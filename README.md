@@ -1,6 +1,8 @@
 ## Install & Usage Instructions
 
-### Requirements: git & Node.js > 8 under Windows 7/8/10, Mac OSX or Linux (I have not tried linux yet)
+### Requirements: git & Node.js > 8 under Windows 7/8/10 (64bit), Mac OSX or Linux (I have not tried linux yet)
+
+Note: MongoMemoryServer may fail if running 32bit win32 system
 
 ### Steps for Installation
 

@@ -1,6 +1,10 @@
 ## Install & Usage Instructions
 
+### Latest Update on 30/12/2019: 
+Refactoring Data Models, Improved Error Handling, Using Mongodb Atlas as Data Service 
+
 ### Requirements: git & Node.js > 8 under Windows 7/8/10 (64bit), Mac OSX or Linux (I have not tried linux yet)
+
 
 Note: MongoMemoryServer may fail if running 32bit win32 system
 
@@ -18,3 +22,4 @@ Note: MongoMemoryServer may fail if running 32bit win32 system
 ### Steps for testing
 
 npm run test
+

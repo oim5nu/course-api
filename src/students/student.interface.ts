@@ -1,7 +1,6 @@
 import { ICourse } from '../courses/course.interface';
 
-export interface IStudent extends Document {
-  id: string;
+export interface IStudent {
   name: string;
-  courses: ICourse[];
+  courses?: ICourse[];
 }

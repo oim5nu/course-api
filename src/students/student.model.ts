@@ -1,20 +1,20 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { IStudent } from './student.interface';
 
-const studentSchema: Schema = new Schema({
-  id: { type: String },
+export type IStudentModel = IStudent & Document;
+const StudentSchema: Schema = new Schema({
   name: { type: String, required: true, unique: true },
   courses: { type: Array, required: true }
-});
+}, { versionKey: false } );
 
-studentSchema.pre('save', function(next) {
-  if (!this.id) this.id = this._id;
-  next();
-});
+// studentSchema.pre('save', function(next) {
+//   if (!this.id) this.id = this._id;
+//   next();
+// });
 
-const StudentModel = mongoose.model<IStudent & Document>(
+const StudentModel = mongoose.model<IStudentModel>(
   'Student',
-  studentSchema
+  StudentSchema
 );
 
 export { StudentModel };

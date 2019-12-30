@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 type TInput = {
-  dbUri: string;
+  uri: string;
 };
 
 // export const connectMongo = ({ dbPath }: TInput) => {
@@ -22,7 +22,7 @@ type TInput = {
 // };
 mongoose.Promise = Promise;
 
-export const connectMongo = ({ dbUri }: TInput) => {
+export const connectMongo = ({ uri }: TInput) => {
   const connect = () => {
     const mongooseOpts = {
       autoReconnect: true,
@@ -35,9 +35,9 @@ export const connectMongo = ({ dbUri }: TInput) => {
     mongoose.set('useCreateIndex', true);
 
     mongoose
-      .connect(dbUri, mongooseOpts)
+      .connect(uri, mongooseOpts)
       .then(() => {
-        return console.info(`Successfully connected to ${dbUri}`);
+        return console.info(`Successfully connected to ${uri}`);
       })
       .catch(error => {
         console.error('Error connecting to database: ', error);
@@ -47,9 +47,9 @@ export const connectMongo = ({ dbUri }: TInput) => {
       if (e.message.code === 'ETIMEDOUT') {
         console.log(e);
         mongoose
-          .connect(dbUri, mongooseOpts)
+          .connect(uri, mongooseOpts)
           .then(() => {
-            return console.info(`Successfully Reconnected to ${dbUri}`);
+            return console.info(`Successfully Reconnected to ${uri}`);
           })
           .catch(error => {
             console.error('Error connecting to database: ', error);

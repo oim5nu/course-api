@@ -21,20 +21,15 @@ export default class CourseController implements Controller {
   }
 
   private createStudent = (req: Request, res: Response, next: NextFunction) => {
-    const postData: IStudent = req.body;
-    const { id, name, courses } = postData;
-    const createdPost = new this.student({
-      id,
-      name,
-      courses: [...courses]
-    });
-    createdPost
+    const studentData: IStudent = req.body;
+    const createdStudent = new this.student(studentData)
+    createdStudent
       .save()
-      .then(savedPost => {
-        if (savedPost) {
-          res.send(savedPost);
+      .then(savedStudent => {
+        if (savedStudent) {
+          res.send(savedStudent);
         } else {
-          next(new NotFoundException(id));
+          next(new NotFoundException(studentData.name));
         }
       })
       .catch(error => {

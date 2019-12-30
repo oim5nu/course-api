@@ -9,9 +9,9 @@ import { errorMiddleware } from './middleware/error.middleware';
 class App {
   public app: Application;
 
-  constructor(controllers: Controller[], dbUri: string) {
+  constructor(controllers: Controller[]) {
     this.app = express();
-    this.connectToTheDatabase(dbUri);
+    this.connectToTheDatabase();
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
     this.initializeErrorHandling();
@@ -44,14 +44,15 @@ class App {
     });
   }
 
-  private connectToTheDatabase(dbUri: string) {
-    // const {
-    //   MONGO_USER,
-    //   MONGO_PASSWORD,
-    //   MONGO_PATH
-    // } = process.env;
-    // const dbPath = MONGO_PATH || `mongodb://localhost:27017/test`;
-    connectMongo({ dbUri });
+  private connectToTheDatabase() {
+    const {
+      MONGO_USER,
+      MONGO_PASSWORD,
+      MONGO_DBNAME
+    } = process.env;
+    //mongodb+srv://<username>:<password>@cluster0-23rda.mongodb.net/test?retryWrites=true&w=majority
+    const uri = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@cluster0-23rda.mongodb.net/${MONGO_DBNAME}?retryWrites=true&w=majority`;
+    connectMongo({ uri });
   }
 }
 
